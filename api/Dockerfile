@@ -1,0 +1,7 @@
+FROM nginx
+
+MAINTAINER Mohamed Keita <naman2kmn@gmail.com>
+
+# Nginx site conf
+ADD tools/docker/nginx/server.conf /etc/nginx/conf.d/default.conf
+ADD . /var/www/html
