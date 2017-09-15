@@ -1,0 +1,8 @@
+version: "3.2"
+services:
+  php-fpm:
+    image: momokeith/userletsgo-php-fpm
+  api:
+    image: momokeith/userletsgo-api
+    ports:
+      - "8080:80"

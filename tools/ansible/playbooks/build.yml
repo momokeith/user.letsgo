@@ -1,0 +1,9 @@
+- hosts: local
+
+  tasks:
+    - name: Build the api image and push it to the docker hub
+      docker_image:
+        path: ./../../../api/
+        name: momokeith/userletsgo-api
+        tag: v1
+        push: yes
