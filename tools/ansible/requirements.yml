@@ -1,0 +1,7 @@
+---
+
+- src: geerlingguy.docker
+- src: geerlingguy.pip
+- src: geerlingguy.git
+- src: geerlingguy.php
+- src: geerlingguy.composer

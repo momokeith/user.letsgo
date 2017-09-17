@@ -1,0 +1,8 @@
+php_packages:
+  - php
+  - php-cli
+  - php-common
+  - php-xml
+  - php-mbstring
+
+php_enable_php_fpm: false

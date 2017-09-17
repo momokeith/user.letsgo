@@ -1,0 +1,2 @@
+[production]
+docker.kfina.net ansible_host=docker.kfina.net ansible_user=ubuntu

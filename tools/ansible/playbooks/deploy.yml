@@ -1,0 +1,7 @@
+- hosts: all
+
+  tasks:
+    - name: Docker compose
+      command: docker-compose up -d
+      args:
+        chdir: "{{ project_dir }}"

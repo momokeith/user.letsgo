@@ -1,0 +1,16 @@
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Log into DockerHub
+      docker_login:
+        username: momokeith
+        password: M0mo1986
+        email: naman2kmn@gmail.com
+
+    - name: Build the api image and push it to the docker hub
+      docker_image:
+        path: /vagrant/api/
+        name: momokeith/userletsgo-api
+        tag: v1
+        push: yes

@@ -1,9 +1,8 @@
-- hosts: local
+- hosts: all
 
   tasks:
-    - name: Build the api image and push it to the docker hub
-      docker_image:
-        path: ./../../../api/
-        name: momokeith/userletsgo-api
-        tag: v1
-        push: yes
+    - name: Docker compose
+      command: composer install
+      args:
+        chdir: "{{ project_dir }}/api"
+      sudo: no

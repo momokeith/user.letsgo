@@ -1,2 +1,2 @@
 [local]
-localhost
+user.api.letsgo.local ansible_host=user.api.letsgo.local ansible_user=vagrant ansible_password=vagrant
