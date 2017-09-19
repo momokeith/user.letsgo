@@ -5,7 +5,7 @@
     - name: Copy stack to swarm
       copy:
         src: /Users/mohamed.keita/Projects/Personal/user.letsgo/docker-stack.yml
-        dest: ~
+        dest: /home/ubuntu
 
     - name: Deploy stack
-      command: docker stack deploy -c ~/docker-stack.yml user_letsgo
+      command: docker stack deploy -c /home/ubuntu/docker-stack.yml user_letsgo

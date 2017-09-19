@@ -1,0 +1,53 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+required_plugins = %w( vagrant-hostsupdater )
+required_plugins.each do |plugin|
+    exec "vagrant plugin install #{plugin};vagrant #{ARGV.join(" ")}" unless Vagrant.has_plugin? plugin || ARGV[0] == 'plugin'
+end
+
+VAGRANTFILE_API_VERSION = "2"
+
+# Require YAML module
+require 'yaml'
+
+# Read YAML file with box details
+conf = YAML.load_file('config.yml')
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.hostname = conf['vm']['hostname']
+
+  config.vm.network "private_network", ip: conf['vm']['network']['ip']
+
+  config.vm.synced_folder "../..", conf['vm']['synced_folder']['guest_path'],
+   owner: conf['vm']['synced_folder']['owner'], group: conf['vm']['synced_folder']['group'],
+   mount_options: ["dmode=775,fmode=775"]
+
+  config.vm.post_up_message = <<-EOF
+    Your environment is now ready. \n
+    Use:
+      * `vagrant ssh` to connect via this terminal
+      * http://#{conf['vm']['hostname']} to connect via a browser from this host
+  EOF
+
+  config.vm.provider "virtualbox" do |v|
+    v.name = conf['vm']['provider']['name']
+    v.memory = conf['vm']['provider']['memory']
+  end
+
+  config.vm.define "ubuntu1404", primary: true do |node|
+    node.vm.box = "ubuntu/trusty64"
+    node.vm.provision "ansible" do |ansible|
+      ansible.playbook = "../ansible/playbooks/main.yml"
+      ansible.sudo = true
+      ansible.inventory_path = "../ansible/inventories"
+      ansible.limit = "local"
+      ansible.galaxy_role_file = "../ansible/requirements.yml"
+      ansible.galaxy_roles_path = "../ansible/playbooks/roles"
+      ansible.verbose = "vvvv"
+    end
+
+    config.vm.provision "shell",  name: "chdir to project dir", inline: "echo 'cd #{conf['vm']['synced_folder']['guest_path']}' > /etc/profile.d/cd_into_project.sh"
+  end
+end

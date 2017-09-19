@@ -12,5 +12,7 @@
       docker_image:
         path: /vagrant/api/
         name: momokeith/userletsgo-api
-        tag: v1
+        tag: latest
         push: yes
+        force: yes
+        state: present
