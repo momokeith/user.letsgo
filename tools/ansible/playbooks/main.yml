@@ -1,3 +1,2 @@
 - include: provisioning.yml
-- include: build.yml
 - include: deploy.yml

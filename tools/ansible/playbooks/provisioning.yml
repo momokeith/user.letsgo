@@ -7,6 +7,3 @@
   roles:
     - geerlingguy.pip
     - geerlingguy.docker
-    - geerlingguy.git
-    - geerlingguy.php
-    - geerlingguy.composer

@@ -1,0 +1,20 @@
+version: "3.2"
+services:
+  php-fpm:
+    build:
+      context: ./api
+      dockerfile: ./tools/docker/php71-fpm/Dockerfile
+    volumes:
+      - type: volume
+        source: ./api
+        target: /var/www/html
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile.local
+    volumes:
+      - type: volume
+        source: ./api
+        target: /var/www/html
+    ports:
+      - "8081:80"
