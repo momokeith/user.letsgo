@@ -11,10 +11,5 @@ pipeline {
         sh 'hostname'
       }
     }
-    stage('deploy') {
-      steps {
-        sh 'docker-compose up --build'
-      }
-    }
   }
 }
