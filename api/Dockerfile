@@ -5,7 +5,8 @@ RUN ls
 RUN composer update
 
 FROM nginx
-WORKDIR /tmp
+RUN mkdir -p /var/www/html
+WORKDIR /var/www/html
 COPY --from=composer /tmp/ .
 RUN ls
 ADD tools/docker/nginx/server.conf /etc/nginx/conf.d/default.conf
