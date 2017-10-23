@@ -9,7 +9,7 @@ FROM nginx
 MAINTAINER Mohamed Keita <naman2kmn@gmail.com>
 
 WORKDIR /var/www/html
-COPY --from=composer /tmp .
+COPY --from=composer /tmp/* .
 
 # Nginx site conf
 ADD tools/docker/nginx/server.conf /etc/nginx/conf.d/default.conf
