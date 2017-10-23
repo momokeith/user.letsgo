@@ -15,3 +15,43 @@ ansible-playbook -i tools/ansible/inventories/local  tools/ansible/playbooks/bui
 
 # Deploy to swarm
 ansible-playbook -i tools/ansible/inventories/production  tools/ansible/playbooks/deploy_stack.yml
+
+# Create docker machine
+docker-machine create \
+  --driver generic \
+  --generic-ip-address=34.240.42.252 \
+  --generic-ssh-key ~/.ssh/mohamedkeita.pem \
+  --generic-ssh-user ubuntu \
+  staging-docker-ce
+  
+docker-machine create \
+  --driver amazonec2 \
+  --amazonec2-ssh-keypath ~/.ssh/id_rsa \
+  --amazonec2-region eu-west-1 \
+  staging-docker-ce 
+  
+# CI setup  
+
+## Jenkins host
+
+### Ubuntu distribution
+```
+lsb_release -a
+
+``
+
+### Install the linux-image-extra-* packages
+
+```
+sudo apt-get update
+
+sudo apt-get install \
+    linux-image-extra-$(uname -r) \
+    linux-image-extra-virtual
+```
+### log as jenkins
+
+``
+sudo su - jenkins
+```
+
