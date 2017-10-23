@@ -8,7 +8,8 @@ FROM nginx
 
 MAINTAINER Mohamed Keita <naman2kmn@gmail.com>
 
-COPY --from=composer /tmp/* /var/www/html/
+WORKDIR /var/www/html
+COPY --from=composer /tmp/composer.json .
 
 # Nginx site conf
 ADD tools/docker/nginx/server.conf /etc/nginx/conf.d/default.conf
