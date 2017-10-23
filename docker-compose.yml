@@ -4,15 +4,7 @@ services:
     build:
       context: ./api
       dockerfile: ./tools/docker/php71-fpm/Dockerfile
-    volumes:
-      - type: volume
-        source: ./api
-        target: /var/www/html
   api:
     build: api/
-    volumes:
-      - type: volume
-        source: ./api
-        target: /var/www/html
     ports:
       - "8081:80"
