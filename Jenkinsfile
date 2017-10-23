@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    node {
-      label 'Builder'
-    }
-    
-  }
+  agent any
   stages {
     stage('Change docker host') {
       steps {
