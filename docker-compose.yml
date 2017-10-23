@@ -1,9 +1,7 @@
 version: "3.2"
 services:
   php-fpm:
-    build:
-      context: ./api
-      dockerfile: ./tools/docker/php71-fpm/Dockerfile
+    build: php-fpm/
   api:
     build: api/
     ports:
