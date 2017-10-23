@@ -5,8 +5,8 @@ RUN ls
 RUN composer update
 
 FROM nginx
-MAINTAINER Mohamed Keita <naman2kmn@gmail.com>
+RUN ls /var/www/
 WORKDIR /var/www/html
-RUN ls
 COPY --from=composer /tmp/composer.json .
+RUN ls
 ADD tools/docker/nginx/server.conf /etc/nginx/conf.d/default.conf
