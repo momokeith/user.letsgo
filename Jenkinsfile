@@ -1,9 +1,10 @@
 pipeline {
   agent any
   stages {
-    stage('Initialize') {
+    stage('docker-compose') {
       steps {
-        sh 'ls'
+        sh '''eval $(docker-machine env coulibaly-docker-ce)
+docker-compose up -d'''
       }
     }
   }
