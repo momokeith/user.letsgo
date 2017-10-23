@@ -4,4 +4,4 @@ ADD . /tmp
 WORKDIR /tmp
 RUN composer update
 
-CMD ["bin/phpspec", "r"]
+ENTRYPOINT ["bin/phpspec", "r"]
