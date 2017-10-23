@@ -5,7 +5,7 @@ RUN ls
 RUN composer update
 
 FROM nginx
-RUN ls /var/www/
+RUN ls /var/www
 WORKDIR /var/www/html
 COPY --from=composer /tmp/composer.json .
 RUN ls
