@@ -6,9 +6,9 @@ pipeline {
     
   }
   stages {
-    stage('Initialize') {
+    stage('Change docker host') {
       steps {
-        sh 'hostname'
+        sh '# eval $(docker-machine env coulibaly-docker-ce)'
       }
     }
   }
