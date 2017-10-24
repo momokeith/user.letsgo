@@ -3,7 +3,7 @@ services:
   php-fpm:
     build:
       context: ./api
-      dockerfile: ./tools/docker/php71-fpm/Dockerfile
+      dockerfile: ./tools/docker/php71-fpm/Dockerfile.local
     volumes:
       - type: volume
         source: ./api
@@ -18,3 +18,20 @@ services:
         target: /var/www/html
     ports:
       - "8081:80"
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=M0mo1986
+      - MYSQL_DATABASE=user
+      - MYSQL_USER=api
+      - MYSQL_PASSWORD=api_pwd
+    volumes:
+      - /Users/mohamedkeita/mysql:/var/lib/mysql
+  db-migration:
+    build:
+      context: ./api
+      dockerfile: ./tools/docker/db-migration/Dockerfile
+    command: ["./wait_for_it.sh", "db:3306", "--", "bin/phinx", "migrate" ,"-e" ,"development"]
+    depends_on:
+      - db
+

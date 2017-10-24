@@ -1,10 +1,6 @@
 version: "3.2"
 services:
-  php-fpm:
+  test:
     build:
       context: ./api
-      dockerfile: ./tools/docker/php71-fpm/Dockerfile
-  api:
-    build: api/
-    ports:
-      - "8081:80"
+      dockerfile: ./tools/docker/test/Dockerfile

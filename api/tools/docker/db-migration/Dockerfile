@@ -4,8 +4,9 @@ WORKDIR /tmp
 RUN ls
 RUN composer update
 
-FROM php:7.1-fpm
+FROM thatsamguy/trusty-php71
 RUN mkdir -p /var/www/html
 WORKDIR /var/www/html
 COPY --from=composer /tmp/ .
-CMD ["bin/phinx", "-e", "development"]
+
+RUN chmod +x wait_for_it.sh

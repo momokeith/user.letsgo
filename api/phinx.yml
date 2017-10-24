@@ -1,5 +1,5 @@
 paths:
-    migrations: %%PHINX_CONFIG_DIR%%/db/migrations
+    db-migration: %%PHINX_CONFIG_DIR%%/db/migrations
     seeds: %%PHINX_CONFIG_DIR%%/db/seeds
 
 environments:
@@ -16,10 +16,10 @@ environments:
 
     development:
         adapter: mysql
-        host: localhost
-        name: development_db
-        user: root
-        pass: ''
+        host: db
+        name: user
+        user: api
+        pass: api_pwd
         port: 3306
         charset: utf8
 
