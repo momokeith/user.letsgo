@@ -8,3 +8,19 @@ services:
     build: api/
     ports:
       - "8081:80"
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=M0mo1986
+      - MYSQL_DATABASE=user
+      - MYSQL_USER=api
+      - MYSQL_PASSWORD=api_pwd
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql
+  db-migration:
+    build:
+      context: ./api
+      dockerfile: ./tools/docker/db-migration/Dockerfile
+    command: ["./wait_for_it.sh", "db:3306", "--", "bin/phinx", "migrate" ,"-e" ,"development"]
+    depends_on:
+      - db
