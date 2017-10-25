@@ -11,4 +11,4 @@ COPY --from=composer /tmp/ .
 
 RUN chmod +x wait_for_it.sh
 
-RUN cat phinx.yml
+RUN cat vendor/robmorgan/phinx/src/Phinx/Config/Config.php
