@@ -6,6 +6,8 @@ services:
       dockerfile: ./tools/docker/php71-fpm/Dockerfile
   api:
     build: api/
+    environment:
+      - VIRTUAL_HOST=user.api.letsgo.staging.kfina.net
     ports:
       - "8081:80"
   db:

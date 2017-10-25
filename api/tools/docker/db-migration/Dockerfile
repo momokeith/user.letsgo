@@ -10,3 +10,5 @@ WORKDIR /var/www/html
 COPY --from=composer /tmp/ .
 
 RUN chmod +x wait_for_it.sh
+
+RUN cat phinx.yml
