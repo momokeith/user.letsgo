@@ -8,8 +8,8 @@ services:
     build: api/
     environment:
       - VIRTUAL_HOST=user.api.letsgo.staging.kfina.net
-    ports:
-      - "8081:80"
+    expose:
+      - "80"
   db:
     image: mysql
     environment:
