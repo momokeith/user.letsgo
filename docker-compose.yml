@@ -23,6 +23,6 @@ services:
     build:
       context: ./api
       dockerfile: ./tools/docker/db-migration/Dockerfile
-    command: ["./wait_for_it.sh", "db:3306", "--", "./tools/docker/db-migration/entrypoint.sh"]
+    command: ["./tools/docker/db-migration/wait_for_it.sh", "db:3306", "--", "./tools/docker/db-migration/entrypoint.sh"]
     depends_on:
       - db
