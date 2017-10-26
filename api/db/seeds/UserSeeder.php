@@ -10,7 +10,7 @@ class UserSeeder extends AbstractSeed
     {
         $data = [
             [
-                'created' => date('Y-m-d H:i:s'),
+                'email' => 'mohamed.keita@worldfirst.com',
             ]
         ];
 

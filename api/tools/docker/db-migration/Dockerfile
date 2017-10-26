@@ -10,5 +10,4 @@ WORKDIR /var/www/html
 COPY --from=composer /tmp/ .
 
 RUN chmod +x wait_for_it.sh
-
-RUN cat vendor/robmorgan/phinx/src/Phinx/Config/Config.php
+RUN chmod +x tools/docker/db-migration/entrypoint.sh

@@ -8,8 +8,8 @@ services:
     build: api/
     environment:
       - VIRTUAL_HOST=user.api.letsgo.staging.kfina.net
-    expose:
-      - "80"
+    ports:
+      - "8081:80"
   db:
     image: mysql
     environment:
@@ -23,6 +23,6 @@ services:
     build:
       context: ./api
       dockerfile: ./tools/docker/db-migration/Dockerfile
-    command: ["./wait_for_it.sh", "db:3306", "--", "bin/phinx", "migrate" ,"-e" ,"development"]
+    command: ["./wait_for_it.sh", "db:3306", "--", "./tools/docker/db-migration/entrypoint.sh"]
     depends_on:
       - db
