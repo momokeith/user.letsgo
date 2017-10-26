@@ -8,5 +8,5 @@ RUN mkdir -p /var/www/html
 WORKDIR /var/www/html
 COPY --from=composer /tmp/ .
 
-RUN chmod +x wait_for_it.sh
+RUN chmod +x tools/docker/db-migration/wait_for_it.sh
 RUN chmod +x tools/docker/db-migration/entrypoint.sh
