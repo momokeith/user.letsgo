@@ -1,4 +1,4 @@
-- hosts: all
+- hosts:
   become: true
 
   tasks:
@@ -10,7 +10,7 @@
 
     - name: Build the api image and push it to the docker hub
       docker_image:
-        path: /vagrant/api/
+        path: /api
         name: momokeith/userletsgo-api
         tag: latest
         push: yes

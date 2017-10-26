@@ -4,5 +4,21 @@ services:
     image: momokeith/userletsgo-php-fpm
   api:
     image: momokeith/userletsgo-api
+    environment:
+      - VIRTUAL_HOST=user.api.letsgo.staging.kfina.net
     ports:
-      - "8080:80"
+      - "8081:80"
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=M0mo1986
+      - MYSQL_DATABASE=user
+      - MYSQL_USER=api
+      - MYSQL_PASSWORD=api_pwd
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql
+  db-migration:
+    image: momokeith/db-migration
+    command: ["./tools/docker/db-migration/wait_for_it.sh", "db:3306", "--", "./tools/docker/db-migration/entrypoint.sh"]
+    depends_on:
+      - db

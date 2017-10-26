@@ -26,7 +26,6 @@ docker-machine create \
   
 docker-machine create \
   --driver amazonec2 \
-  --amazonec2-ssh-keypath ~/.ssh/id_rsa \
   --amazonec2-region eu-west-1 \
   staging-docker-ce 
   
