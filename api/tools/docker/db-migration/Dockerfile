@@ -1,7 +1,6 @@
 FROM composer/composer as composer
 ADD . /tmp
 WORKDIR /tmp
-RUN ls
 RUN composer update
 
 FROM thatsamguy/trusty-php71
