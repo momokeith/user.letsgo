@@ -1,5 +1,4 @@
 <?php
-// Routes
 
 $app->get('/users', function ($request, \Slim\Http\Response $response, $args) {
     $ret = $this->get('db')->query('SELECT * FROM users');
