@@ -54,3 +54,14 @@ sudo apt-get install \
 sudo su - jenkins
 ```
 
+docker service create \
+--name portainer \
+--publish 9000:9000 \
+--replicas=1 \
+--constraint 'node.role == manager' \
+--mount type=bind,src=//var/run/docker.sock,dst=/var/run/docker.sock \
+portainer/portainer \
+-H unix:///var/run/docker.sock
+
+
+sudo docker service create --name migration --network userletsgo_default momokeith/userletsgo-db-migration tools/docker/db-migration/entrypoint.s

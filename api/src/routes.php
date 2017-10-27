@@ -7,7 +7,7 @@ $app->get('/users', function ($request, \Slim\Http\Response $response, $args) {
 
 $app->post('/users', function ($request, \Slim\Http\Response $response, $args) {
     $parsedBody = $request->getParsedBody();
-    $sql = sprintf("INSERT INTO users (email) VALUES ('%s')",$parsedBody['email']);
+    $sql = sprintf("INSERT INTO users (email, name) VALUES ('%s','%s')",$parsedBody['email'],$parsedBody['name']);
     $this->get('db')->query($sql);
 
     return $response->withJson(["result"=>"created"]);
