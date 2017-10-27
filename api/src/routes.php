@@ -21,3 +21,10 @@ $app->delete('/users/{email}', function ($request, \Slim\Http\Response $response
 
     return $response->withJson(["result"=>"deleted"]);
 });
+
+
+$app->get('/users_test', function ($request, \Slim\Http\Response $response, $args) {
+    $ret = $this->get('db')->query('SELECT * FROM users');
+    return $response->withJson($ret->fetchAll());
+});
+
