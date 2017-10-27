@@ -19,6 +19,5 @@ services:
       - /var/lib/mysql:/var/lib/mysql
   db-migration:
     image: momokeith/db-migration
-    command: ["./tools/docker/db-migration/wait_for_it.sh", "db:3306", "--", "./tools/docker/db-migration/entrypoint.sh"]
     depends_on:
       - db

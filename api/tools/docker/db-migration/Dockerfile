@@ -10,3 +10,5 @@ COPY --from=composer /tmp/ .
 
 RUN chmod +x tools/docker/db-migration/wait_for_it.sh
 RUN chmod +x tools/docker/db-migration/entrypoint.sh
+
+ENTRYPOINT ["./tools/docker/db-migration/wait_for_it.sh", "db:3306", "--", "./tools/docker/db-migration/entrypoint.sh"]
