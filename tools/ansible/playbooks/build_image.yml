@@ -1,5 +1,7 @@
 - hosts: all
   become: true
+  connection: local
+
 
   tasks:
     - name: Log into DockerHub
