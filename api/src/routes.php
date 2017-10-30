@@ -23,7 +23,7 @@ $app->delete('/users/{email}', function ($request, \Slim\Http\Response $response
 });
 
 
-$app->get('/users_test', function ($request, \Slim\Http\Response $response, $args) {
+$app->get('/users_tes', function ($request, \Slim\Http\Response $response, $args) {
     $ret = $this->get('db')->query('SELECT * FROM users');
     return $response->withJson($ret->fetchAll());
 });

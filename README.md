@@ -29,6 +29,8 @@ docker-machine create \
   --amazonec2-region eu-west-1 \
   staging-docker-ce 
   
+docker swarm init
+  
 # CI setup  
 
 ## Jenkins host
@@ -54,6 +56,8 @@ sudo apt-get install \
 sudo su - jenkins
 ```
 
+docker swarm init
+
 docker service create \
 --name portainer \
 --publish 9000:9000 \
@@ -64,4 +68,12 @@ portainer/portainer \
 -H unix:///var/run/docker.sock
 
 
-sudo docker service create --name migration --network userletsgo_default momokeith/userletsgo-db-migration tools/docker/db-migration/entrypoint.s
+sudo docker service create \
+--name migration \
+--network userletsgo_default \
+--restart-condition none
+momokeith/userletsgo-db-migration \
+tools/docker/db-migration/entrypoint.sh
+
+
+docker swarm join-token worker
