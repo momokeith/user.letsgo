@@ -28,3 +28,7 @@ $app->get('/users_test', function ($request, \Slim\Http\Response $response, $arg
     return $response->withJson($ret->fetchAll());
 });
 
+$app->get('/users_tsi', function ($request, \Slim\Http\Response $response, $args) {
+    $ret = $this->get('db')->query('SELECT * FROM users');
+    return $response->withJson($ret->fetchAll());
+});
